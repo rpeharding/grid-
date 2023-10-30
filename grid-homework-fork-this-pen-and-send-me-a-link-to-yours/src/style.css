@@ -1,0 +1,186 @@
+/* Presentational CSS - ignore but don't change */
+:root {
+  --numberofquestions: 15;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 50px 15px;
+  background-color: #005080;
+  font-size: 1.6rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
+h1 {
+  color: darkorange;
+  text-shadow: 2px 2px 5px #000;
+}
+
+main {
+  display: flex;
+  flex-flow: column;
+  height: calc(500px * var(--numberofquestions));
+}
+
+section {
+  border-radius: 15px;
+  flex: 1 0 auto;
+  margin-bottom: 50px;
+  padding: 15px;
+  color: white;
+  box-shadow: inset 5px 5px 10px #000;
+}
+
+section h2 {
+  text-decoration: underline;
+}
+
+section [class^="grid"] {
+  border: 3px dashed #f00;
+}
+
+section [class^="grid"] > * {
+  background-color: yellow;
+  color: #000;
+  border: 3px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+/* END OF Presentational CSS */
+
+/* Q1. Make your grid have 3 columns of 200px and 2 rows of 100px. Use the repeat function to do the columns. */
+
+.grid1 {
+
+}
+
+/* Q2. Do the same as Q1 (not the repeat bit!) but make the middle column take up remaining space */
+
+.grid2 {
+
+}
+
+/* Q3. Do the same as Q1 but make all the columns flexible, but the middle column take up 3 times as much space as the other two. */
+
+.grid3 {
+  
+}
+
+/* Q4. Do the same as Q3 but make the middle column grow, whilst the other two collapse to the size of their content. */
+
+.grid4 {
+
+}
+
+/* Q5. Do the same as Q3 but add a gap of 10px between the columns. Then, commented out, show how you would create the same gap between the rows. KEEP THE ROW & COLUMN GAP FOR THE REST OF THE EXAMPLES */
+
+.grid5 {
+
+}
+
+/* Q6. Set the grid's width to 216px (because borders). Set it to have 2 rows and 2 columns (both at 100px each). Change the widths and heights on those items in the implicit grid to match the width of those in the explicit grid.*/
+
+.grid6 {
+
+}
+
+/* Q7. Create a grid with 3 columns, the outer two go between 100px and 200px, and the inner being 200px and upwards */
+
+.grid7 {
+
+}
+
+/* Q8. Set the grid to have 3 columns: 1st. The minimum size of the content; 2nd. the maximum size of the content, and; 3rd. allows up to 200px of space for the content  */
+
+.grid8 {
+
+}
+
+/* Q9. Create a 4 by 4 grid, all of 1fr. Put 4 items in it and make the first and the last item span all the columns. Make the second span 2 columns but start AFTER the first column (which will therefore be empty). Make item 2 span 2 rows.
+
+Commented out below that, show how you would make it so that it would stay the same even if another column was inserted  */
+
+.grid9 {
+
+}
+
+
+.grid9 > *:nth-child(1) {
+
+}
+
+.grid9 > *:nth-child(2) {
+
+}
+
+.grid9 > *:nth-child(4) {
+
+}
+
+/* Q10. Define a grid with the column lines 'page-start', ('content-start' and 'ad-start'), 'ad-end', 'content-end' and 'page-end'; create grid row lines for 'page-start', 'content-start', 'content-end' and 'page-end'; make the height of rows a minimum of 100px and a maximum of auto.  
+
+Make item 1 run from content-start to page-end (columns and rows).
+ */
+
+.grid10 {
+
+}
+
+
+/* Q11. Create a 4 x 4 grid (1fr gap) and define 4 areas (top-left, top-right, bottom-left, bottom-right) which span 2 rows and 2 columns each. Put the items in each area but revese the corners. */
+
+.grid11 {
+
+}
+
+
+/* Q12. Make the grid 600px high. Create a 4 x 4 grid (100px wide columns and rows). Align the grid content to the bottom right; In their grid cells, align the item content to the top left. Every second item should stretch the full height and width of their cell; Every third should be centered in the cell */
+
+.grid12 {
+
+}
+
+/* Q13. Create a 4 x 4 grid (1fr track). Make every 3rd item span 3 columns and every 5th span 4 columns. Set a property that makes the spaces in the grid get filled in where possible. */
+
+.grid13 {
+
+}
+
+
+/* Q14. Create a 4 x 4 grid (no gaps, track width 1fr). Make the items start at 1,1; 2,2 and; 3,3 and span 2 rows and 2 columns. Bring the first item to the front of the stack and the third to the back. */
+
+.grid14 {
+
+}
+
+/* Q15. Align the odd children to the end and justify them to the center*/
+.grid15 {
+  display: grid;
+  align-items: start;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+}
+
+.grid15 div {
+  height: 50px;
+}
+
+.grid15 div:nth-child(odd) {
+/* ?? */
+}

@@ -1,0 +1,328 @@
+/* Presentational CSS - ignore but don't change */
+:root {
+  --numberofquestions: 15;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 50px 15px;
+  background-color: #005080;
+  font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+
+h1 {
+  color: darkorange;
+  text-shadow: 2px 2px 5px #000;
+}
+
+main {
+  display: flex;
+  flex-flow: column;
+  height: calc(500px * var(--numberofquestions));
+}
+
+section {
+  border-radius: 15px;
+  flex: 1 0 auto;
+  margin-bottom: 50px;
+  padding: 15px;
+  color: white;
+  box-shadow: inset 5px 5px 10px #000;
+}
+
+section h2 {
+  text-decoration: underline;
+}
+
+section [class^="grid"] {
+  border: 3px dashed #f00;
+}
+
+section [class^="grid"] > * {
+  background-color: yellow;
+  color: #000;
+  border: 3px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+/* END OF Presentational CSS */
+
+/* Q1. Make your grid have 3 columns of 200px and 2 rows of 100px. Use the repeat function to do the columns. */
+
+.grid1 {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: 100px 100px;
+}
+
+/* Q2. Do the same as Q1 (not the repeat bit!) but make the middle column take up remaining space */
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: 100px 100px;
+}
+
+/* Q3. Do the same as Q1 but make all the columns flexible, but the middle column take up 3 times as much space as the other two. */
+
+.grid3 {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 100px 100px;
+}
+
+/* Q4. Do the same as Q3 but make the middle column grow, whilst the other two collapse to the size of their content. */
+
+.grid4 {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  grid-template-rows: 100px 100px;
+}
+
+/* Q5. Do the same as Q3 but add a gap of 10px between the columns. Then, commented out, show how you would create the same gap between the rows. KEEP THE ROW & COLUMN GAP FOR THE REST OF THE EXAMPLES */
+
+.grid5 {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 100px 100px;
+  grid-column-gap: 10px;
+  /* grid-row-gap: 10px; */
+}
+
+/* Q6. Set the grid's width to 216px (because borders). Set it to have 2 rows and 2 columns (both at 100px each). Change the widths and heights on those items in the implicit grid to match the width of those in the explicit grid.*/
+
+.grid6 {
+  display: grid;
+  width: 216px;
+  grid-template-columns: 100px 100px;
+  grid-template-rows: 100px 100px;
+  grid-gap: 10px;
+  /* grid-auto-columns: 100px;
+  grid-auto-rows: 100px;
+  I found this worked to resize the implicit tracks as nthchild selecting wasnt working for me */
+}
+
+.grid6 > :nth-child(5),
+.grid6 > :nth-child(6) {
+  width: 100px;
+  min-height: 100px;
+}
+
+/* Q7. Create a grid with 3 columns, the outer two go between 100px and 200px, and the inner being 200px and upwards */
+
+.grid7 {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: minmax(100px, 200px) minmax(200px, 1fr) minmax(
+      100px,
+      200px
+    );
+}
+
+/* Q8. Set the grid to have 3 columns: 1st. The minimum size of the content; 2nd. the maximum size of the content, and; 3rd. allows up to 200px of space for the content  */
+
+.grid8 {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: min-content max-content fit-content(200px);
+}
+
+/* Q9. Create a 4 by 4 grid, all of 1fr. Put 4 items in it and make the first and the last item span all the columns. Make the second span 2 columns but start AFTER the first column (which will therefore be empty). Make item 2 span 2 rows.
+
+Commented out below that, show how you would make it so that it would stay the same even if another column was inserted  */
+
+.grid9 {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.grid9 > *:nth-child(1) {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
+.grid9 > *:nth-child(2) {
+  grid-column-start: 2;
+  grid-column-end: -2;
+  grid-row-start: 2;
+  grid-row-end: -2;
+}
+/* in the question it states that the first column will be empty but on applying the extra row in the second part of the question about the second item
+I found it moved item 3 to the first column, is this expected or have I inadvertantly caused this to happen by not executing the question right? */
+
+.grid9 > *:nth-child(4) {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
+/* Q10. Define a grid with the column lines 'page-start', ('content-start' and 'ad-start'), 'ad-end', 'content-end' and 'page-end'; create grid row lines for 'page-start', 'content-start', 'content-end' and 'page-end'; make the height of rows a minimum of 100px and a maximum of auto.  
+
+Make item 1 run from content-start to page-end (columns and rows).
+ */
+
+.grid10 {
+  display: grid;
+  grid-template-columns: [page-start][content-start][ad-start][ad-end][content-end][page-end];
+  grid-template-rows:
+    [page-start] minmax(100px, auto) [content-start] minmax(100px, auto)
+    [content-end] minmax(100px, auto) [page-end];
+}
+
+.grid10 > div {
+  grid-column-start: content-start;
+  grid-column-end: page-end;
+  grid-row-start: content-start;
+  grid-row-end: page-end;
+}
+
+/* Q11. Create a 4 x 4 grid (1fr gap) and define 4 areas (top-left, top-right, bottom-left, bottom-right) which span 2 rows and 2 columns each. Put the items in each area but revese the corners. */
+
+/* didn't totally understand this notation (1fr gap) - but I thought it mean that I set an arbitrary gap (say 10px) and a 4x4 grid of cell size 1fr.*/
+.grid11 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 10px;
+  grid-template-areas:
+    "top-left"
+    "top-right"
+    "bottom-left"
+    "bottom-right";
+}
+
+.top-left {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.top-right {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.bottom-left {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 5;
+}
+.bottom-right {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 5;
+}
+
+/* Q12. Make the grid 600px high. Create a 4 x 4 grid (100px wide columns and rows). Align the grid content to the bottom right; In their grid cells, align the item content to the top left. Every second item should stretch the full height and width of their cell; Every third should be centered in the cell */
+
+.grid12 {
+  display: grid;
+  grid-gap: 10px;
+  height: 600px;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+  justify-content: end;
+  align-content: end;
+  justify-items: start;
+  align-items: start;
+}
+
+.grid12 > :nth-child(2n) {
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.grid12 > :nth-child(3n) {
+  place-self: center;
+  min-height: initial;
+  min-width: initial;
+}
+
+/* Q13. Create a 4 x 4 grid (1fr track). Make every 3rd item span 3 columns and every 5th span 4 columns. Set a property that makes the spaces in the grid get filled in where possible. */
+
+.grid13 {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-auto-flow: dense;
+}
+
+.grid13 > :nth-child(3n) {
+  grid-column: span 3;
+}
+
+.grid13 > :nth-child(5n) {
+  grid-column: span 4;
+}
+
+/* Q14. Create a 4 x 4 grid (no gaps, track width 1fr). Make the items start at 1,1; 2,2 and; 3,3 and span 2 rows and 2 columns. Bring the first item to the front of the stack and the third to the back. */
+
+.grid14 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+.grid14 > :nth-child(3) {
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  grid-row-start: 1;
+  grid-row-end: span 2;
+}
+
+.grid14 > :nth-child(2) {
+  grid-column-start: 2;
+  grid-column-end: span 2;
+  grid-row-start: 2;
+  grid-row-end: span 2;
+}
+
+.grid14 > :nth-child(1) {
+  grid-column-start: 3;
+  grid-column-end: span 2;
+  grid-row-start: 3;
+  grid-row-end: span 2;
+}
+
+/* Q15. Align the odd children to the end and justify them to the center*/
+.grid15 {
+  display: grid;
+  align-items: start;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+}
+
+.grid15 div {
+  height: 50px;
+}
+
+.grid15 div:nth-child(odd) {
+  align-self: end;
+  justify-self: center;
+}
